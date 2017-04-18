@@ -1,7 +1,7 @@
 /*!
  * Chart.Funnel.js
  * A funnel plugin for Chart.js(http://chartjs.org/)
- * Version: 2.0.0
+ * Version: 2.0.1
  *
  * Copyright 2016 Jone Casaper
  * Released under the MIT license
@@ -491,6 +491,13 @@ module.exports = function(Chart) {
 			return {
 				x: vm.x || vm.x2,
 				y: vm.base - (vm.base - vm.y)/2
+			};
+		},
+		getCenterPoint: function () {
+			var vm = this._view;
+			return {
+				x: (vm.x + vm.base) / 2,
+				y: (vm.y + vm.base) / 2
 			};
 		}
 	});
