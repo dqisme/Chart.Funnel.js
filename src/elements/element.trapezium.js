@@ -159,6 +159,13 @@ module.exports = function(Chart) {
 				x: vm.x || vm.x2,
 				y: vm.base - (vm.base - vm.y)/2
 			};
+		},
+		getCenterPoint: function () {
+			var vm = this._view;
+			return {
+				x: (vm.x + vm.base) / 2,
+				y: (vm.y + vm.base) / 2
+			};
 		}
 	});
 };
