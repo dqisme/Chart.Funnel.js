@@ -1,3 +1,11 @@
-/**
- * Created by dq on 18/04/2017.
- */
+'use strict';
+
+module.exports = function(Chart) {
+
+  Chart.Funnel = function(context, config) {
+    config.type = 'funnel';
+
+    return new Chart(context, config);
+  };
+
+};

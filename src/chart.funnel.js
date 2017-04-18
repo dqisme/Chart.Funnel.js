@@ -14,5 +14,6 @@ Chart = typeof(Chart) === 'function' ? Chart : window.Chart;
 
 require('./elements/element.trapezium.js')(Chart);
 require("./controllers/controller.funnel.js")(Chart);
+require("./chart/Chart.Funnel")(Chart);
 
 module.exports = Chart;
