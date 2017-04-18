@@ -1,7 +1,7 @@
 /*!
  * Chart.Funnel.js
  * A funnel plugin for Chart.js(http://chartjs.org/)
- * Version: 2.0.1
+ * Version: 2.0.2
  *
  * Copyright 2016 Jone Casaper
  * Released under the MIT license
@@ -187,7 +187,7 @@ module.exports = function(Chart) {
 
 			// top and bottom width
 			var bottomWidth = availableWidth,
-				topWidth = (opts.topWidth < availableWidth ? opts.topWidth : availableWidth) || 0;
+				topWidth = ((opts.topWidth < availableWidth || opts.topWidth === 'auto') ? opts.topWidth : availableWidth) || 0;
 			if (opts.bottomWidth) {
 				bottomWidth = opts.bottomWidth < availableWidth ? opts.bottomWidth : availableWidth;
 			}
@@ -275,8 +275,14 @@ module.exports = function(Chart) {
 					},
 					index
 				);
-				upperWidth = previousElement ? previousElement.val * dwRatio : me.topWidth;
 				bottomWidth = elementData.val * dwRatio;
+				if (previousElement) {
+					upperWidth = previousElement.val;
+				} else if (me.topWidth === 'auto') {
+					upperWidth = bottomWidth;
+				} else {
+					upperWidth = me.topWidth;
+				}
 			} else {
 				var nextElement = helpers.findNextWhere(me.sortedDataAndLabels,
 					function (el) {
@@ -285,7 +291,13 @@ module.exports = function(Chart) {
 					index
 				);
 				upperWidth = elementData.val * dwRatio;
-				bottomWidth = nextElement ? nextElement.val * dwRatio : me.topWidth;
+				if (nextElement) {
+					bottomWidth = nextElement.val * dwRatio;
+				} else if (me.topWidth === 'auto') {
+					bottomWidth = upperWidth;
+				} else {
+					bottomWidth = me.topWidth;
+				}
 			}
 
 			y = chartArea.top + viewIndex * (elHeight + gap);
