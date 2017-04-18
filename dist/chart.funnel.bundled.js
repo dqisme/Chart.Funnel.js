@@ -1,7 +1,7 @@
 /*!
  * Chart.Funnel.js
  * A funnel plugin for Chart.js(http://chartjs.org/)
- * Version: 1.0.4
+ * Version: 2.0.0
  *
  * Copyright 2016 Jone Casaper
  * Released under the MIT license
@@ -16745,11 +16745,26 @@ return hooks;
 var Chart = require(1);
 Chart = typeof(Chart) === 'function' ? Chart : window.Chart;
 
+require(52)(Chart);
 require(51)(Chart);
 require(50)(Chart);
 
 module.exports = Chart;
-},{"1":1,"50":50,"51":51}],50:[function(require,module,exports){
+
+},{"1":1,"50":50,"51":51,"52":52}],50:[function(require,module,exports){
+'use strict';
+
+module.exports = function(Chart) {
+
+  Chart.Funnel = function(context, config) {
+    config.type = 'funnel';
+
+    return new Chart(context, config);
+  };
+
+};
+
+},{}],51:[function(require,module,exports){
 /**
  *
  * Extend funnel Charts
@@ -17036,7 +17051,7 @@ module.exports = function(Chart) {
 		}
 	});
 };
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
  *
  * Extend trapezium element
